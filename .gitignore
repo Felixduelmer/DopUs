@@ -1,0 +1,16 @@
+
+checkpoints/
+
+.polyaxon/
+
+.idea/
+
+wandb/
+
+*.pth
+
+*.mp4
+
+*.png
+
+*.pyc

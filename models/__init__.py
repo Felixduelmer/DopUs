@@ -1,0 +1,80 @@
+# Abstract level model definition
+# Returns the model class for specified network type
+import os
+
+
+class ModelOpts:
+    def __init__(self):
+        self.gpu_ids = [0]
+        self.isTrain = True
+        self.continue_train = False
+        self.which_epoch = int(0)
+        self.save_dir = './checkpoints/default'
+        self.model_type = 'unet'
+        self.input_nc = 1
+        self.lr_rate = 1e-12
+        self.l2_reg_weight = 0.0
+        self.feature_scale = 4
+        self.path_pre_trained_model = None
+        self.criterion = 'cross_entropy'
+        self.type = 'seg'
+        self.optim = 'sgd'
+        self.isRNN = True
+
+        # Attention Classifier
+        self.aggregation_mode = 'concatenation'
+
+    def initialise(self, json_opts):
+        opts = json_opts
+
+        self.raw = json_opts
+        self.gpu_ids = opts.gpu_ids
+        self.isTrain = opts.isTrain
+        self.save_dir = os.path.join(opts.checkpoints_dir, opts.experiment_name)
+        self.model_type = opts.model_type
+        self.input_nc = opts.input_nc
+        self.continue_train = opts.continue_train
+        self.which_epoch = opts.which_epoch
+        self.isRNN = opts.is_rnn
+
+        if hasattr(opts, 'type'):
+            self.type = opts.type
+        if hasattr(opts, 'l2_reg_weight'):
+            self.l2_reg_weight = opts.l2_reg_weight
+        if hasattr(opts, 'lr_rate'):
+            self.lr_rate = opts.lr_rate
+        if hasattr(opts, 'feature_scale'):
+            self.feature_scale = opts.feature_scale
+
+        if hasattr(opts, 'path_pre_trained_model'):
+            self.path_pre_trained_model = opts.path_pre_trained_model
+        if hasattr(opts, 'criterion'):
+            self.criterion = opts.criterion
+        if hasattr(opts, "optim"):
+            self.optim = opts.optim
+
+        # Classifier
+        if hasattr(opts, 'aggregation_mode'):
+            self.aggregation_mode = opts.aggregation_mode
+
+
+def get_model(json_opts):
+    # Neural Network Model Initialisation
+    model = None
+    model_opts = ModelOpts()
+    model_opts.initialise(json_opts)
+
+    # Print the model type
+    print('\nInitialising model {}'.format(model_opts.model_type))
+
+    model_type = model_opts.type
+    if model_type == 'seg':
+        # Return the model type
+        from .feedforward_seg_model import FeedForwardSegmentation
+        model = FeedForwardSegmentation()
+
+    # Initialise the created model
+    model.initialize(model_opts)
+    print("Model [%s] is created" % (model.name()))
+
+    return model

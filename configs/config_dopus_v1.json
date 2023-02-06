@@ -1,0 +1,52 @@
+{
+    "training": {
+        "arch_type": "us",
+        "n_epochs": 1000,
+        "save_epoch_freq": 10,
+        "lr_policy": "step",
+        "lr_decay_iters": 250,
+        "batchSize": 16,
+        "preloadData": true,
+        "seq_len": 20,
+        "patience": 15,
+        "update_freq": 4
+    },
+    "visualisation": {
+        "display_port": 8097,
+        "no_html": true,
+        "display_winsize": 256,
+        "display_id": 1,
+        "display_single_pane_ncols": 0
+    },
+    "data_path": {
+        "us": "/data1/volume1/data/felix_data/h5_files/ultrasound_patient_original.h5"
+    },
+     "augmentation": {
+        "us": {
+            "shift": [0.01,0.01],
+            "rotate": 15.0,
+            "scale": [0.8,1.2],
+            "random_flip_prob": 0.5
+        }
+    },
+    "model": {
+        "type": "seg",
+        "continue_train": false,
+        "which_epoch": -1,
+        "model_type": "dopusv1",
+        "division_factor": 16,
+        "input_nc": [0, 1],
+        "lr_rate": 1e-4,
+        "l2_reg_weight": 1e-6,
+        "feature_scale": 8,
+        "gpu_ids": [
+            0
+        ],
+        "optim": "adam",
+        "isTrain": true,
+        "checkpoints_dir": "./checkpoints",
+        "experiment_name": "DopUs_V1",
+        "criterion": "dice_loss",
+        "is_rnn": true
+    }
+}
