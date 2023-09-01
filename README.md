@@ -1,8 +1,6 @@
 # DopUS-Net: Quality-Aware Robotic Ultrasound Imaging Based on Doppler Signal
 
-[Data](https://syncandshare.lrz.de/getlink/fi3EGowa2yGEkUr3yZFUwn/)
-
-Pytorch implementation of segmentation based on Ultrasound B-Mode and Doppler images.<br><br>
+Pytorch implementation of segmentation based on Ultrasound B-Mode and Doppler images. Accepted at IEEE Transactions on Automation Science and Engineering. <br><br>
 
 [DopUS-Net: Quality-Aware Robotic Ultrasound Imaging Based on Doppler Signal](https://ieeexplore.ieee.org/abstract/document/10152472)  
  [Zhongliang Jiang](https://www.cs.cit.tum.de/camp/members/zhongliang-jiang/)\*<sup>1</sup>,
@@ -10,7 +8,6 @@ Pytorch implementation of segmentation based on Ultrasound B-Mode and Doppler im
  [Nassir Navab](https://www.professoren.tum.de/en/navab-nassir)<sup>1</sup> <br>
  <sup>1</sup>Technical University of Munich (TUM)
 \*denotes equal contribution  
-Accepted at IEEE Transactions on Automation Science and Engineering.
 
 
 ## Installation
